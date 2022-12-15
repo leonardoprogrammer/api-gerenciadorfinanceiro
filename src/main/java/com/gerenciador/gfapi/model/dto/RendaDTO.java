@@ -1,6 +1,5 @@
 package com.gerenciador.gfapi.model.dto;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class RendaDTO {
@@ -10,8 +9,6 @@ public class RendaDTO {
     private Double valor;
     private Date data;
     private String descricao;
-    private Timestamp dtaAdd;
-    private Timestamp dtaAlt;
 
     public long getIdUsuario() {
         return idUsuario;
@@ -51,21 +48,5 @@ public class RendaDTO {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public Timestamp getDtaAdd() {
-        return dtaAdd;
-    }
-
-    public void setDtaAdd(Timestamp dtaAdd) {
-        this.dtaAdd = dtaAdd;
-    }
-
-    public Timestamp getDtaAlt() {
-        return dtaAlt;
-    }
-
-    public void setDtaAlt(Timestamp dtaAlt) {
-        this.dtaAlt = dtaAlt;
     }
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -40,11 +40,11 @@ public class Renda implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DTA_ADD")
-    private Timestamp dtaAdd;
+    private Calendar dtaAdd;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DTA_ALT")
-    private Timestamp dtaAlt;
+    private Calendar dtaAlt;
 
     public long getId() {
         return id;
@@ -94,19 +94,19 @@ public class Renda implements Serializable {
         this.descricao = descricao;
     }
 
-    public Timestamp getDtaAdd() {
+    public Calendar getDtaAdd() {
         return dtaAdd;
     }
 
-    public void setDtaAdd(Timestamp dtaAdd) {
+    public void setDtaAdd(Calendar dtaAdd) {
         this.dtaAdd = dtaAdd;
     }
 
-    public Timestamp getDtaAlt() {
+    public Calendar getDtaAlt() {
         return dtaAlt;
     }
 
-    public void setDtaAlt(Timestamp dtaAlt) {
+    public void setDtaAlt(Calendar dtaAlt) {
         this.dtaAlt = dtaAlt;
     }
 }

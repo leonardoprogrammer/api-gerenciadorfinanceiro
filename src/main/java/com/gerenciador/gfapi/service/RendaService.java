@@ -30,6 +30,10 @@ public class RendaService {
         return rendaRepository.findById(id);
     }
 
+    public List<Renda> findByIdUsuario(long id) {
+        return rendaRepository.findByIdUsuario(id);
+    }
+
     @Transactional
     public void deletar(Renda renda) {
         rendaRepository.delete(renda);

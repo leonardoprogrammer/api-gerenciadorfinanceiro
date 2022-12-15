@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.Timestamp;
-import java.util.Optional;
+import java.util.Calendar;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -34,13 +34,13 @@ public class RendaController {
 
         Renda renda = new Renda();
         BeanUtils.copyProperties(rendaDTO, renda);
-        renda.setDtaAdd(new Timestamp(System.currentTimeMillis()));
+        renda.setDtaAdd(Calendar.getInstance());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(rendaService.salvar(renda));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> retornarRendasPorUsuario(@PathVariable(value = "id") long id) {
-        //
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<Renda>> enviarRendasPorUsuario(@PathVariable(value = "id") long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(rendaService.findByIdUsuario(id));
     }
 }
