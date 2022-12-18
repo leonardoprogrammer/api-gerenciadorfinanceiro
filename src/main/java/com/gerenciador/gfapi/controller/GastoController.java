@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class GastoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(gastoService.salvar(gasto));
     }
 
-    @GetMapping("/usuario/{id}") //trocar para QueryParam
-    public ResponseEntity<List<Gasto>> enviarGastosPorUsuario(@PathVariable(value = "id") long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(gastoService.findByIdUsuario(id));
+    @GetMapping
+    public ResponseEntity<Object> enviarGastosPorUsuario(@RequestParam(name = "usuario") long idUsuario) {
+        return ResponseEntity.status(HttpStatus.OK).body(gastoService.findByIdUsuario(idUsuario));
     }
 }

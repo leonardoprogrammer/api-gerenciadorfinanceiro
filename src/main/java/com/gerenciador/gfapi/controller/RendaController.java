@@ -39,8 +39,8 @@ public class RendaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(rendaService.salvar(renda));
     }
 
-    @GetMapping("/usuario/{id}") //trocar para QueryParam
-    public ResponseEntity<List<Renda>> enviarRendasPorUsuario(@PathVariable(value = "id") long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(rendaService.findByIdUsuario(id));
+    @GetMapping
+    public ResponseEntity<List<Renda>> enviarRendasPorUsuario(@RequestParam(name = "usuario") long idUsuario) {
+        return ResponseEntity.status(HttpStatus.OK).body(rendaService.findByIdUsuario(idUsuario));
     }
 }
