@@ -38,7 +38,7 @@ public class GastoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(gastoService.salvar(gasto));
     }
 
-    @GetMapping("/usuario/id") //trocar para QueryParam
+    @GetMapping("/usuario/{id}") //trocar para QueryParam
     public ResponseEntity<List<Gasto>> enviarGastosPorUsuario(@PathVariable(value = "id") long id) {
         return ResponseEntity.status(HttpStatus.OK).body(gastoService.findByIdUsuario(id));
     }
