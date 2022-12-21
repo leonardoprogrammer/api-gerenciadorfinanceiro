@@ -3,6 +3,7 @@ package com.gerenciador.gfapi.controller;
 import com.gerenciador.gfapi.model.dto.UsuarioDTO;
 import com.gerenciador.gfapi.model.entity.Usuario;
 import com.gerenciador.gfapi.service.UsuarioService;
+import com.gerenciador.gfapi.util.Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,9 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflito: nome de usuário já está em uso.");
         }
 
-        //verificar se CPF é válido
+        if (!Utils.valida_cpf(usuarioDTO.getCpf())) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Problema: o CPF não é válido.");
+        }
 
         if (usuarioService.existsByCpf(usuarioDTO.getCpf())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflito: este CPF já está em uso.");

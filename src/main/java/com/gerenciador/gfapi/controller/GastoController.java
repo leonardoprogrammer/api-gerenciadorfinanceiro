@@ -10,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -30,6 +28,10 @@ public class GastoController {
     public ResponseEntity<Object> salvarGasto(@RequestBody @Valid GastoDTO gastoDTO) {
         if (!usuarioService.existsById(gastoDTO.getIdUsuario())) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro: usuário não encontrado.");
+        }
+
+        if (gastoDTO.getValor() < 0) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Problema: o valor deve ser igual ou maior a zero.");
         }
 
         Gasto gasto = new Gasto();

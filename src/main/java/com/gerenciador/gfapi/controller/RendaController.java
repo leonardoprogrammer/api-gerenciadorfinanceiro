@@ -32,6 +32,10 @@ public class RendaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro: usuário não encontrado.");
         }
 
+        if (rendaDTO.getValor() < 0) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Problema: o valor deve ser igual ou maior a zero.");
+        }
+
         Renda renda = new Renda();
         BeanUtils.copyProperties(rendaDTO, renda);
         renda.setDtaAdd(Calendar.getInstance());
