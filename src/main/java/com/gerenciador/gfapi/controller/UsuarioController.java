@@ -3,6 +3,7 @@ package com.gerenciador.gfapi.controller;
 import com.gerenciador.gfapi.model.dto.UsuarioDTO;
 import com.gerenciador.gfapi.model.entity.Usuario;
 import com.gerenciador.gfapi.service.UsuarioService;
+import com.gerenciador.gfapi.util.Formatacao;
 import com.gerenciador.gfapi.util.Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -31,8 +32,11 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflito: nome de usuário já está em uso.");
         }
 
-        if (!Utils.valida_cpf(usuarioDTO.getCpf())) {
+        String cpf = Formatacao.limparCpf(usuarioDTO.getCpf());
+        if (!Utils.valida_cpf(cpf)) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Problema: o CPF não é válido.");
+        } else {
+            usuarioDTO.setCpf(cpf);
         }
 
         if (usuarioService.existsByCpf(usuarioDTO.getCpf())) {
@@ -67,7 +71,12 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado.");
         }
 
-        //validar CPF
+        String cpf = Formatacao.limparCpf(usuarioDTO.getCpf());
+        if (!Utils.valida_cpf(cpf)) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Problema: o CPF não é válido.");
+        } else {
+            usuarioDTO.setCpf(cpf);
+        }
 
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDTO, usuario);
