@@ -14,8 +14,8 @@ public class GfApiApplication {
 	}
 
 	@GetMapping("/")
-	public String index() {
-		return "Olá mundo!";
+	public ResponseEntity<Object> testarConexao() {
+		return ResponseEntity.status(HttpStatus.OK).body("Conexão OK!");
 	}
 
 }
