@@ -22,6 +22,11 @@ public class RendaService {
         return rendaRepository.save(renda);
     }
 
+    @Transactional
+    public void deletar(Renda renda) {
+        rendaRepository.delete(renda);
+    }
+
     public List<Renda> findAll() {
         return rendaRepository.findAll();
     }
@@ -34,8 +39,7 @@ public class RendaService {
         return rendaRepository.findByIdUsuario(id);
     }
 
-    @Transactional
-    public void deletar(Renda renda) {
-        rendaRepository.delete(renda);
+    public boolean existsByIdUsuario(long idUsuario) {
+        return rendaRepository.existsByIdUsuario(idUsuario);
     }
 }

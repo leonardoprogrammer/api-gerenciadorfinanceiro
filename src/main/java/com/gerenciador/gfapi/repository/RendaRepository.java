@@ -10,4 +10,6 @@ import java.util.List;
 public interface RendaRepository extends JpaRepository<Renda, Long> {
 
     List<Renda> findByIdUsuario(long idUsuario);
+
+    boolean existsByIdUsuario(long idUsuario);
 }
